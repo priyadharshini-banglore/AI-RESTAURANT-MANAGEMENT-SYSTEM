@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#F4F6F8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="RestroAI App" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <title>Restro POS — India's Leading Restaurant Management Platform</title>
+    <!-- OpenGraph & Google Scanner Rich Preview Cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Restro POS — Restaurant Management & Billing Platform" />
+    <meta property="og:description" content="All-in-One Restaurant POS, Kitchen KDS, Swiggy & Zomato aggregators, inventory management, and 100% offline billing." />
+    <meta property="og:image" content="/images/pizza_banner.jpg" />
+    <meta name="description" content="All-in-One Restaurant POS, Kitchen KDS, Swiggy & Zomato aggregators, inventory management, and 100% offline billing." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+              inter: ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      @keyframes float3D {
+        0%, 100% {
+          transform: translateY(0px) rotateZ(0deg);
+        }
+        50% {
+          transform: translateY(-12px) rotateZ(2deg);
+        }
+      }
+      .animate-float {
+        animation: float3D 4s ease-in-out infinite;
+      }
+    </style>
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body class="bg-[#F4F6F8] text-[#1C1C1C] antialiased selection:bg-[#E23744] selection:text-white font-sans overflow-x-clip">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "RestroAI - SaaS Restaurant Management & AI Command Center",
+  "short_name": "RestroAI App",
+  "description": "Enterprise AI-Driven Restaurant Operations, Kitchen KDS, and Smart Table Ordering Portal",
+  "theme_color": "#0B0F19",
+  "background_color": "#0B0F19",
+  "display": "standalone",
+  "orientation": "any",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

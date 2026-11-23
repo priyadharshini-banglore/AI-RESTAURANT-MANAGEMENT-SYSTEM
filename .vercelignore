@@ -1,0 +1,7 @@
+node_modules
+dist
+.env.local
+*.log
+cf.log
+Food (1).html
+Restaurant Servant Portal (3).html
