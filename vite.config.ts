@@ -29,9 +29,9 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [react(), restroAiSyncPlugin(env.GEMINI_API_KEY, env.GROQ_API_KEY)],
     define: {
-      'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GROQ_API_KEY': JSON.stringify(env.GROQ_API_KEY),
+      'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
+      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
+      'process.env.GROQ_API_KEY': JSON.stringify(env.GROQ_API_KEY || ''),
     },
     resolve: {
       alias: {

@@ -1,7 +1,22 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { WasteLog, Feedback, MenuItem, VisualWasteAnalysis, VisualWasteLog, AIPredictionResult } from '../types';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+let cachedAiClient: GoogleGenAI | null = null;
+
+/**
+ * Lazily initializes the Gemini client only when a valid API key is present so
+ * missing browser env vars never crash module startup.
+ */
+function getGeminiClient(): GoogleGenAI | null {
+  const apiKey = (process.env.API_KEY || '').trim();
+  if (!apiKey || apiKey === 'undefined' || apiKey.includes('PLACEHOLDER')) {
+    return null;
+  }
+  if (!cachedAiClient) {
+    cachedAiClient = new GoogleGenAI({ apiKey });
+  }
+  return cachedAiClient;
+}
 
 export const getWastePrediction = async (
     wasteLogs: WasteLog[], 
@@ -44,6 +59,8 @@ export const getWastePrediction = async (
   `;
 
   try {
+    const ai = getGeminiClient();
+    if (!ai) throw new Error('Gemini API key not configured');
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",
         contents: prompt,
@@ -114,6 +131,8 @@ export const getPersonalizedFeedbackGreeting = async (itemNames: string[]): Prom
   `;
 
   try {
+    const ai = getGeminiClient();
+    if (!ai) throw new Error('Gemini API key not configured');
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
@@ -156,6 +175,8 @@ export const analyzeWasteImage = async (
     };
 
     try {
+        const ai = getGeminiClient();
+        if (!ai) throw new Error('Gemini API key not configured');
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: { parts: [textPart, imagePart] },
@@ -199,6 +220,8 @@ export const generateGuestReview = async (
     const prompt = `Write a short, authentic 1-sentence foodie restaurant review for a guest dining at Table. The guest gave a ${rating} out of 5 star rating. They ate: ${dishesStr}. Table server was ${servantName}. Keep it under 25 words, genuine and enthusiastic. Return ONLY the review sentence.`;
 
     try {
+        const ai = getGeminiClient();
+        if (!ai) throw new Error('Gemini API key not configured');
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: prompt,
