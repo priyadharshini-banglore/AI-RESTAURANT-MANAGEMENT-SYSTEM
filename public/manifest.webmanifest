@@ -10,9 +10,9 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/icon.svg",
-      "sizes": "192x192 512x512 any",
-      "type": "image/svg+xml",
+      "src": "/images/pizza-round.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
